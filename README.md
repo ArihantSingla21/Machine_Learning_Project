@@ -14,12 +14,15 @@ A brief description of your machine learning project, its purpose, and the probl
 - [License](#license)
 
 ## Installation
-Clone the repository
+## Clone the repository
 git clone https://github.com/username/project-name.git
-Create a virtual environment
+## Create a virtual environment
 python -m venv venv
-source venv/bin/activate # Linux/Mac
-venv\Scripts\activate # Windows
+## Activate virtual environment
+## For Linux/Mac:
+source venv/bin/activate
+## For Windows:
+venv\Scripts\activate
 Install dependencies
 pip install -r requirements.txt
 
@@ -82,4 +85,4 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 Created by [ArihantSingla21](https://github.com/ArihantSingla21)
 
-For questions or support, please open an issue or contact [your-email@example.com]
+For questions or support, please open an issue or contact [arihantsingla21@gmail.com]
