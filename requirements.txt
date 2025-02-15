@@ -2,4 +2,6 @@ pandas
 numpy 
 seaborn 
 fastapi
+scikit-learn
+matplotlib
 -e .
