@@ -96,6 +96,7 @@ class DataTransformation:
             
             logging.info("Saved preprocessing object")
 
+            # saving the preprocessing object
             save_object(
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
@@ -113,9 +114,6 @@ class DataTransformation:
         
 if __name__ == "__main__":
     obj = DataTransformation()
-    train_df = pd.read_csv(os.path.join("artifacts","train.csv"))
-    test_df = pd.read_csv(os.path.join("artifacts","test.csv"))
-    train_arr,test_arr,_ = obj.initiate_data_transformation(train_df,test_df)
         
             
             
