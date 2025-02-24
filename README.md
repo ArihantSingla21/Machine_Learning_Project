@@ -28,7 +28,6 @@ venv\Scripts\activate
 ## 5. Install dependencies
 pip install -r requirements.txt
 
-
 ## Dataset
 The dataset contains student performance information:
 - **Size**: 1000 students, 8 features
@@ -52,6 +51,11 @@ The dataset contains student performance information:
   - `MODEL TRAINING.ipynb`: Model Training and Evaluation
 - `data/`
   - `stud.csv`: Raw dataset
+- `src/`
+  - `components/`: Contains data ingestion, transformation, and model training modules
+  - `utils.py`: Utility functions for saving models and evaluating performance
+  - `exception.py`: Custom exception handling
+  - `logger.py`: Logging configuration
 
 ## Model Architecture
 Multiple regression models were implemented and compared:

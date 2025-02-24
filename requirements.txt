@@ -4,5 +4,6 @@ seaborn
 fastapi
 scikit-learn
 matplotlib
-dill 
+dill
+flask  
 -e .
