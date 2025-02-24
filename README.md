@@ -1,7 +1,7 @@
 # Student Performance Prediction
 
 ## Overview
-This machine learning project analyzes and predicts student performance based on various demographic and academic factors. The model aims to predict math scores using features like gender, race/ethnicity, parental education, lunch type, and test preparation course completion status.
+This machine learning project analyzes and predicts student performance based on various demographic and academic factors. The model aims to predict math scores using features like gender, race/ethnicity, parental education, lunch type, and test preparation course completion status. The project includes a web application for making predictions.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -9,6 +9,7 @@ This machine learning project analyzes and predicts student performance based on
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Model Architecture](#model-architecture)
+- [Web Application](#web-application)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
@@ -25,7 +26,7 @@ python -m venv venv
 source venv/bin/activate
 ### - For Windows:
 venv\Scripts\activate
-## 5. Install dependencies
+## 4. Install dependencies
 pip install -r requirements.txt
 
 ## Dataset
@@ -53,9 +54,29 @@ The dataset contains student performance information:
   - `stud.csv`: Raw dataset
 - `src/`
   - `components/`: Contains data ingestion, transformation, and model training modules
+  - `pipeline/`: Contains prediction pipeline for web application
   - `utils.py`: Utility functions for saving models and evaluating performance
   - `exception.py`: Custom exception handling
   - `logger.py`: Logging configuration
+- `templates/`
+  - `home.html`: Main prediction form interface
+  - `index.html`: Landing page
+- `artifacts/`: Stores trained models and preprocessed data
+- `application.py`: Web application entry point
+- `.ebextensions/`: AWS Elastic Beanstalk configuration
+
+## Web Application
+The project includes a web interface built with Flask that allows users to:
+- Input student information through a user-friendly form
+- Get instant predictions for math scores
+- Access the application through a deployed web service
+
+To run the application locally:
+```bash
+python application.py
+```
+
+The application can be accessed at `http://localhost:5000`
 
 ## Model Architecture
 Multiple regression models were implemented and compared:
