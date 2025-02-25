@@ -3,84 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Performance Predictor</title>
+    <title>Student Performance Predictor | AI-Powered Analytics</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #4158D0;
+            --secondary-color: #C850C0;
+            --accent-color: #FFCC70;
+        }
+
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
-            padding-top: 50px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
+
         .prediction-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            padding: 30px;
+            padding: 35px;
             margin-top: 20px;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
         }
+
         .prediction-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
         }
-        .form-label {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        .form-control {
-            border-radius: 8px;
-            border: 1px solid #dde1e7;
-            padding: 10px 15px;
-        }
-        .btn-predict {
-            background: linear-gradient(45deg, #2193b0, #6dd5ed);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-predict:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(33, 147, 176, 0.3);
-        }
+
         .header {
             text-align: center;
             margin-bottom: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         .header h1 {
-            color: #2c3e50;
-            font-weight: 700;
+            font-weight: 800;
+            font-size: 2.8rem;
             margin-bottom: 15px;
+            animation: fadeIn 1s ease-out;
         }
+
         .header p {
-            color: #34495e;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
+
+        .form-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .form-select, .form-control {
+            border-radius: 12px;
+            border: 2px solid #eef2f7;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-select:focus, .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(65, 88, 208, 0.25);
+        }
+
+        .btn-predict {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-predict:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(65, 88, 208, 0.3);
+        }
+
         .result-section {
             margin-top: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Custom tooltip styles */
+        .tooltip-inner {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 10px 15px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Student Performance Predictor</h1>
-            <p>Enter student details to predict their mathematics score</p>
+            <h1><i class="fas fa-graduation-cap me-3"></i>Student Performance Predictor</h1>
+            <p>Unlock student potential with our AI-powered mathematics score prediction</p>
         </div>
         
         <div class="prediction-card">
-            <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <form action="{{ url_for('predict_datapoint')}}" method="post" class="needs-validation" novalidate>
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Gender</label>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-user me-2"></i>Gender
+                            </label>
                             <select class="form-select" name="gender" required>
                                 <option value="" selected disabled>Select Gender</option>
                                 <option value="male">Male</option>
@@ -89,8 +176,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Race/Ethnicity</label>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-user-tie me-2"></i>Race/Ethnicity
+                            </label>
                             <select class="form-select" name="race_ethnicity" required>
                                 <option value="" selected disabled>Select Race/Ethnicity</option>
                                 <option value="group A">Group A</option>
@@ -103,8 +192,10 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Parental Education</label>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-book me-2"></i>Parental Education
+                            </label>
                             <select class="form-select" name="parental_level_of_education" required>
                                 <option value="" selected disabled>Select Parental Education</option>
                                 <option value="bachelor's degree">Bachelor's Degree</option>
@@ -118,8 +209,10 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Lunch Type</label>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-utensils me-2"></i>Lunch Type
+                            </label>
                             <select class="form-select" name="lunch" required>
                                 <option value="" selected disabled>Select Lunch Type</option>
                                 <option value="standard">Standard</option>
@@ -129,8 +222,10 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Test Preparation</label>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-book-open me-2"></i>Test Preparation
+                            </label>
                             <select class="form-select" name="test_preparation_course" required>
                                 <option value="" selected disabled>Select Test Preparation</option>
                                 <option value="none">None</option>
@@ -140,38 +235,77 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Reading Score</label>
-                            <input class="form-control" type="number" name="reading_score" min="0" max="100" 
-                                placeholder="Enter reading score (0-100)" required>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-book-reader me-2"></i>Reading Score
+                            </label>
+                            <input class="form-control" type="number" name="reading_score" 
+                                min="0" max="100" placeholder="Enter score (0-100)" required>
+                            <div class="form-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Writing Score</label>
-                            <input class="form-control" type="number" name="writing_score" min="0" max="100" 
-                                placeholder="Enter writing score (0-100)" required>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-pen-to-square me-2"></i>Writing Score
+                            </label>
+                            <input class="form-control" type="number" name="writing_score" 
+                                min="0" max="100" placeholder="Enter score (0-100)" required>
+                            <div class="form-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center mt-4">
-                    <button class="btn btn-predict btn-lg" type="submit">Predict Score</button>
+                <div class="text-center mt-5">
+                    <button class="btn btn-predict btn-lg" type="submit">
+                        <i class="fas fa-magic me-2"></i>Predict Score
+                    </button>
                 </div>
             </form>
         </div>
         
         {% if results %}
         <div class="result-section">
-            <h3 class="text-center mb-4">Predicted Mathematics Score</h3>
-            <div class="alert alert-success text-center">
-                <h4 class="mb-0">{{ results }}</h4>
+            <h3 class="text-center mb-4">
+                <i class="fas fa-chart-line me-2"></i>Predicted Mathematics Score
+            </h3>
+            <div class="score-display">
+                {{ results }}
+            </div>
+            <div class="text-center mt-3">
+                <p class="text-muted">This prediction is based on the provided student data and our machine learning model</p>
             </div>
         </div>
         {% endif %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enable Bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        // Form validation
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 </body>
 </html>
